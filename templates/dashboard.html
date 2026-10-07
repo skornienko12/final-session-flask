@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Личный кабинет{% endblock %}
+{% block content %}
+<h1>Личный кабинет, {{ session.get('username') }}</h1>
+
+<div class="card">
+    <h2>Добавить заметку</h2>
+    <form method="post">
+        <label>Название</label>
+        <input type="text" name="title" required>
+
+        <label>Текст</label>
+        <textarea name="text" rows="5" required></textarea>
+
+        <button class="btn" type="submit">Добавить</button>
+    </form>
+</div>
+
+<h2>Мои заметки</h2>
+<div class="notes">
+    {% for note in notes %}
+        <div class="note">
+            <h3>{{ note.title }}</h3>
+            <p>{{ note.text }}</p>
+        </div>
+    {% else %}
+        <p>Заметок пока нет.</p>
+    {% endfor %}
+</div>
+{% endblock %}
